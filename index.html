@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Олег та Олександра - Наше весілля</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Lato:wght@300;400;500&family=Dancing+Script:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            /* ФОТО 1: Замініть "header-photo.jpg" на ваше головне фото */
+            background: linear-gradient(135deg, rgba(107, 123, 71, 0.8), rgba(163, 177, 104, 0.8)), url('header-photo.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero-content {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 60px 40px;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            max-width: 600px;
+            margin: 0 20px;
+            backdrop-filter: blur(10px);
+        }
+
+        .hero-title {
+            font-family: 'Dancing Script', cursive;
+            font-size: 3rem;
+            color: #6B7B47;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .hero-names {
+            font-family: 'Playfair Display', serif;
+            font-size: 4rem;
+            color: #5A6B3A;
+            margin: 30px 0;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .ampersand {
+            font-size: 3rem;
+            color: #A3B168;
+            margin: 0 20px;
+            font-style: italic;
+        }
+
+        .hero-date {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: #6B7B47;
+            font-weight: 600;
+            margin-top: 30px;
+        }
+
+        /* Navigation */
+        .nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 15px 0;
+            border-bottom: 1px solid rgba(163, 177, 104, 0.3);
+        }
+
+        .nav-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            padding: 0 20px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 40px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #6B7B47;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            font-size: 1.1rem;
+        }
+
+        .nav-links a:hover {
+            color: #A3B168;
+        }
+
+        /* Sections */
+        .section {
+            padding: 100px 0;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            text-align: center;
+            color: #6B7B47;
+            margin-bottom: 60px;
+            font-weight: 600;
+        }
+
+        /* Our Story Section */
+        .story {
+            background: #F8FAF5;
+        }
+
+        .story-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            padding: 0 40px;
+        }
+
+        .story-text {
+            font-size: 1.3rem;
+            color: #5A6B3A;
+            line-height: 1.8;
+        }
+
+        .story-text p {
+            margin-bottom: 20px;
+        }
+
+        .story-image {
+            text-align: center;
+        }
+
+        .story-image img {
+            width: 100%;
+            max-width: 400px;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(107, 123, 71, 0.3);
+        }
+
+        /* Wedding Details */
+        .details {
+            background: linear-gradient(135deg, #6B7B47 0%, #8B9556 100%);
+            color: white;
+        }
+
+        .details-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            padding: 0 40px;
+        }
+
+        .detail-card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 40px 30px;
+            border-radius: 15px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .detail-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .detail-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .detail-info {
+            font-size: 1.2rem;
+            line-height: 1.6;
+        }
+
+        .detail-highlight {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #F0F4E8;
+        }
+
+        /* Dress Code */
+        .dress-code {
+            background: #F0F4E8;
+            text-align: center;
+        }
+
+        .dress-code-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        .dress-code-text {
+            font-size: 1.4rem;
+            color: #5A6B3A;
+            margin-bottom: 30px;
+        }
+
+        .color-palette {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .color-swatch {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            border: 4px solid white;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .color-olive { background: #6B7B47; }
+        .color-sage { background: #8B9556; }
+        .color-light-olive { background: #A3B168; }
+
+        /* RSVP */
+        .rsvp {
+            background: linear-gradient(135deg, #A3B168 0%, #6B7B47 100%);
+            color: white;
+            text-align: center;
+        }
+
+        .rsvp-content {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        .rsvp-text {
+            font-size: 1.3rem;
+            margin-bottom: 30px;
+            line-height: 1.8;
+        }
+
+        .contact-info {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+
+        .contact-item {
+            margin: 15px 0;
+            font-size: 1.2rem;
+        }
+
+        /* Footer */
+        .footer {
+            background: #5A6B3A;
+            color: white;
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        .footer-message {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        .footer-text {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            animation: fadeInUp 1s ease-out;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero-names {
+                font-size: 2.5rem;
+            }
+            
+            .hero-title {
+                font-size: 2rem;
+            }
+            
+            .ampersand {
+                font-size: 2rem;
+                margin: 0 10px;
+            }
+            
+            .section-title {
+                font-size: 2.5rem;
+            }
+            
+            .story-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            
+            .nav-links {
+                gap: 20px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .nav-links a {
+                font-size: 1rem;
+            }
+            
+            .details-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .section {
+                padding: 60px 0;
+            }
+            
+            .hero-content {
+                padding: 40px 20px;
+            }
+        }
+
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Remove scroll margin for fixed nav */
+        .section {
+            scroll-margin-top: 80px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-content">
+            <ul class="nav-links">
+                <li><a href="#home">Головна</a></li>
+                <li><a href="#story">Наша історія</a></li>
+                <li><a href="#details">Деталі</a></li>
+                <li><a href="#dress-code">Дрес-код</a></li>
+                <li><a href="#rsvp">Підтвердження</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content fade-in">
+            <h1 class="hero-title">Запрошуємо на наше весілля</h1>
+            <div class="hero-names">
+                Олег<span class="ampersand">&</span>Олександра
+            </div>
+            <div class="hero-date">26 вересня 2025</div>
+        </div>
+    </section>
+
+    <!-- Our Story Section -->
+    <section id="story" class="story section">
+        <h2 class="section-title">Наша історія</h2>
+        <div class="story-content">
+            <div class="story-text">
+                <p>Кожна любовна історія унікальна, але наша особлива. Ми зустрілися, коли менше за все очікували знайти свою половинку.</p>
+                <p>Від першого погляду до першого побачення, від перших слів до перших сміливих планів на майбутнє - кожен момент привів нас до цього дня.</p>
+                <p>Тепер ми готові розпочати нову главу нашого життя разом, і хочемо поділити цю радість з найдорожчими для нас людьми.</p>
+            </div>
+            <div class="story-image">
+                <!-- ФОТО 2: Замініть "story-photo.jpg" на ваше друге фото -->
+                <img src="story-photo.jpg" alt="Олег та Олександра">
+            </div>
+        </div>
+    </section>
+
+    <!-- Wedding Details -->
+    <section id="details" class="details section">
+        <h2 class="section-title">Деталі весілля</h2>
+        <div class="details-grid">
+            <div class="detail-card">
+                <span class="detail-icon">📅</span>
+                <h3 class="detail-title">Дата</h3>
+                <div class="detail-info">
+                    <div class="detail-highlight">26 вересня 2025</div>
+                    П'ятниця
+                </div>
+            </div>
+            <div class="detail-card">
+                <span class="detail-icon">⏰</span>
+                <h3 class="detail-title">Час</h3>
+                <div class="detail-info">
+                    <div class="detail-highlight">14:00</div>
+                    Початок церемонії
+                </div>
+            </div>
+            <div class="detail-card">
+                <span class="detail-icon">📍</span>
+                <h3 class="detail-title">Місце</h3>
+                <div class="detail-info">
+                    <div class="detail-highlight">Ресторан "Водограй"</div>
+                    Урочиста церемонія та святкування
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Dress Code -->
+    <section id="dress-code" class="dress-code section">
+        <h2 class="section-title">Дрес-код</h2>
+        <div class="dress-code-content">
+            <p class="dress-code-text">
+                Ми будемо раді бачити вас у зелених та оливкових тонах. 
+                Це допоможе створити гармонійну атмосферу та красиві фотографії нашого особливого дня.
+            </p>
+            <div class="color-palette">
+                <div class="color-swatch color-olive" title="Оливковий"></div>
+                <div class="color-swatch color-sage" title="Шавлієвий"></div>
+                <div class="color-swatch color-light-olive" title="Світло-оливковий"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- RSVP -->
+    <section id="rsvp" class="rsvp section">
+        <h2 class="section-title">Підтвердження присутності</h2>
+        <div class="rsvp-content">
+            <p class="rsvp-text">
+                Будь ласка, підтвердьте свою присутність до 15 вересня 2025 року.
+                Ваша відповідь допоможе нам краще організувати святкування.
+            </p>
+            <div class="contact-info">
+                <div class="contact-item">📞 Олег: +380 XX XXX XX XX</div>
+                <div class="contact-item">📞 Олександра: +380 XX XXX XX XX</div>
+                <div class="contact-item">✉️ our.wedding@email.com</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-message">З любов'ю та нетерпінням очікуємо зустрічі!</div>
+        <div class="footer-text">Олег та Олександра ♥ 2025</div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add fade-in animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all sections
+        document.querySelectorAll('.section').forEach(section => {
+            observer.observe(section);
+        });
+    </script>
+</body>
+</html>

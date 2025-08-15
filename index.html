@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Олег та Олександра - Наше весілля</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Lato:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -13,7 +13,7 @@
         }
 
         body {
-            font-family: 'Lato', sans-serif;
+            font-family: 'Inter', sans-serif;
             line-height: 1.6;
             color: #333;
             overflow-x: hidden;
@@ -42,10 +42,20 @@
             max-width: 600px;
             margin: 0 20px;
             backdrop-filter: blur(10px);
+            transform: translateY(20px);
+            opacity: 0;
+            animation: heroFadeIn 1.5s ease-out 0.5s forwards;
+        }
+
+        @keyframes heroFadeIn {
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
         }
 
         .hero-title {
-            font-family: 'Playfair Display', serif;
+            font-family: 'Poppins', sans-serif;
             font-size: 2.2rem;
             color: #6B7B47;
             margin-bottom: 20px;
@@ -53,11 +63,11 @@
         }
 
         .hero-names {
-            font-family: 'Playfair Display', serif;
+            font-family: 'Poppins', sans-serif;
             font-size: 3.2rem;
             color: #5A6B3A;
             margin: 30px 0;
-            font-weight: 700;
+            font-weight: 500;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
             line-height: 1.1;
         }
@@ -70,10 +80,10 @@
         }
 
         .hero-date {
-            font-family: 'Playfair Display', serif;
+            font-family: 'Poppins', sans-serif;
             font-size: 1.8rem;
             color: #6B7B47;
-            font-weight: 600;
+            font-weight: 400;
             margin-top: 30px;
         }
 
@@ -87,6 +97,14 @@
             z-index: 1000;
             padding: 15px 0;
             border-bottom: 1px solid rgba(163, 177, 104, 0.3);
+            transform: translateY(-100%);
+            animation: navSlideIn 1s ease-out 1s forwards;
+        }
+
+        @keyframes navSlideIn {
+            to {
+                transform: translateY(0);
+            }
         }
 
         .nav-content {
@@ -106,13 +124,30 @@
         .nav-links a {
             text-decoration: none;
             color: #6B7B47;
-            font-weight: 500;
-            transition: color 0.3s ease;
+            font-weight: 300;
+            transition: all 0.3s ease;
             font-size: 1.1rem;
+            position: relative;
+            padding: 5px 0;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #A3B168;
+            transition: width 0.3s ease;
         }
 
         .nav-links a:hover {
             color: #A3B168;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
         }
 
         /* Sections */
@@ -121,28 +156,67 @@
             max-width: 1200px;
             margin: 0 auto;
             opacity: 0;
-            transform: translateY(50px);
-            transition: all 0.8s ease-out;
+            transform: translateY(80px) scale(0.95);
+            transition: all 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
 
         .section.visible {
             opacity: 1;
-            transform: translateY(0);
+            transform: translateY(0) scale(1);
         }
 
         .section-title {
-            font-family: 'Playfair Display', serif;
+            font-family: 'Poppins', sans-serif;
             font-size: 3rem;
             text-align: center;
             color: #6B7B47;
             margin-bottom: 60px;
-            font-weight: 600;
+            font-weight: 500;
+            position: relative;
+            transform: translateY(30px);
+            opacity: 0;
+            transition: all 1s ease-out 0.3s;
+        }
+
+        .section.visible .section-title {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        /* Green background sections - white titles */
+        .details .section-title,
+        .rsvp .section-title {
+            color: white;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, #A3B168, #6B7B47);
+            border-radius: 2px;
+            opacity: 0;
+            transition: all 0.8s ease-out 0.6s;
+        }
+
+        .section.visible .section-title::after {
+            opacity: 1;
+        }
+
+        .details .section-title::after,
+        .rsvp .section-title::after {
+            background: linear-gradient(90deg, rgba(255,255,255,0.8), rgba(255,255,255,0.4));
         }
 
         /* Our Story Section */
         .story {
             background: linear-gradient(to bottom, rgba(248, 250, 245, 0) 0%, #F8FAF5 10%, #F8FAF5 90%, rgba(248, 250, 245, 0) 100%);
             position: relative;
+            padding-top: 150px;
         }
 
         .story::before {
@@ -168,6 +242,15 @@
             font-size: 1.3rem;
             color: #5A6B3A;
             line-height: 1.8;
+            font-weight: 300;
+            transform: translateX(-50px);
+            opacity: 0;
+            transition: all 1s ease-out 0.6s;
+        }
+
+        .section.visible .story-text {
+            transform: translateX(0);
+            opacity: 1;
         }
 
         .story-text p {
@@ -176,6 +259,14 @@
 
         .story-image {
             text-align: center;
+            transform: translateX(50px) scale(0.9);
+            opacity: 0;
+            transition: all 1s ease-out 0.8s;
+        }
+
+        .section.visible .story-image {
+            transform: translateX(0) scale(1);
+            opacity: 1;
         }
 
         .story-image img {
@@ -183,12 +274,34 @@
             max-width: 400px;
             border-radius: 20px;
             box-shadow: 0 15px 40px rgba(107, 123, 71, 0.3);
+            transition: transform 0.3s ease;
+        }
+
+        .story-image img:hover {
+            transform: scale(1.05);
         }
 
         /* Wedding Details */
         .details {
             background: linear-gradient(135deg, #6B7B47 0%, #8B9556 100%);
             color: white;
+            position: relative;
+        }
+
+        .details::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="80" cy="30" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="40" cy="60" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="70" cy="80" r="1" fill="rgba(255,255,255,0.1)"/></svg>');
+            animation: float 20s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
         }
 
         .details-grid {
@@ -205,29 +318,57 @@
             text-align: center;
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.2);
+            transform: translateY(50px);
+            opacity: 0;
+            transition: all 0.8s ease-out;
+        }
+
+        .section.visible .detail-card:nth-child(1) {
+            transition-delay: 0.4s;
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .section.visible .detail-card:nth-child(2) {
+            transition-delay: 0.6s;
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .section.visible .detail-card:nth-child(3) {
+            transition-delay: 0.8s;
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .detail-card:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.2);
         }
 
         .detail-icon {
             font-size: 3rem;
             margin-bottom: 20px;
             display: block;
+            opacity: 0.9;
         }
 
         .detail-title {
-            font-family: 'Playfair Display', serif;
+            font-family: 'Poppins', sans-serif;
             font-size: 1.5rem;
             margin-bottom: 15px;
-            font-weight: 600;
+            font-weight: 400;
         }
 
         .detail-info {
             font-size: 1.2rem;
             line-height: 1.6;
+            font-weight: 300;
         }
 
         .detail-highlight {
             font-size: 1.5rem;
-            font-weight: 600;
+            font-weight: 400;
             color: #F0F4E8;
         }
 
@@ -235,6 +376,18 @@
         .dress-code {
             background: #F0F4E8;
             text-align: center;
+            position: relative;
+        }
+
+        .dress-code::before {
+            content: '';
+            position: absolute;
+            top: -50px;
+            left: 0;
+            right: 0;
+            height: 50px;
+            background: linear-gradient(to bottom, rgba(139, 149, 86, 0.3) 0%, rgba(240, 244, 232, 0) 100%);
+            transform: skewY(-1deg);
         }
 
         .dress-code-content {
@@ -247,6 +400,15 @@
             font-size: 1.4rem;
             color: #5A6B3A;
             margin-bottom: 30px;
+            font-weight: 300;
+            transform: translateY(30px);
+            opacity: 0;
+            transition: all 0.8s ease-out 0.5s;
+        }
+
+        .section.visible .dress-code-text {
+            transform: translateY(0);
+            opacity: 1;
         }
 
         .color-palette {
@@ -262,6 +424,31 @@
             border-radius: 50%;
             border: 4px solid white;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transform: scale(0.8);
+            opacity: 0;
+            transition: all 0.6s ease-out;
+        }
+
+        .section.visible .color-swatch:nth-child(1) {
+            transition-delay: 0.7s;
+            transform: scale(1);
+            opacity: 1;
+        }
+
+        .section.visible .color-swatch:nth-child(2) {
+            transition-delay: 0.9s;
+            transform: scale(1);
+            opacity: 1;
+        }
+
+        .section.visible .color-swatch:nth-child(3) {
+            transition-delay: 1.1s;
+            transform: scale(1);
+            opacity: 1;
+        }
+
+        .color-swatch:hover {
+            transform: scale(1.1);
         }
 
         .color-olive { background: #6B7B47; }
@@ -273,6 +460,18 @@
             background: linear-gradient(135deg, #A3B168 0%, #6B7B47 100%);
             color: white;
             text-align: center;
+            position: relative;
+        }
+
+        .rsvp::before {
+            content: '';
+            position: absolute;
+            top: -50px;
+            left: 0;
+            right: 0;
+            height: 50px;
+            background: linear-gradient(to bottom, rgba(240, 244, 232, 0.3) 0%, rgba(163, 177, 104, 0) 100%);
+            transform: skewY(1deg);
         }
 
         .rsvp-content {
@@ -285,6 +484,15 @@
             font-size: 1.3rem;
             margin-bottom: 30px;
             line-height: 1.8;
+            font-weight: 300;
+            transform: translateY(30px);
+            opacity: 0;
+            transition: all 0.8s ease-out 0.5s;
+        }
+
+        .section.visible .rsvp-text {
+            transform: translateY(0);
+            opacity: 1;
         }
 
         .contact-info {
@@ -292,11 +500,20 @@
             padding: 30px;
             border-radius: 15px;
             backdrop-filter: blur(10px);
+            transform: translateY(40px);
+            opacity: 0;
+            transition: all 0.8s ease-out 0.7s;
+        }
+
+        .section.visible .contact-info {
+            transform: translateY(0);
+            opacity: 1;
         }
 
         .contact-item {
             margin: 15px 0;
             font-size: 1.2rem;
+            font-weight: 300;
         }
 
         /* Footer */
@@ -305,24 +522,39 @@
             color: white;
             text-align: center;
             padding: 40px 20px;
+            position: relative;
+        }
+
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: -50px;
+            left: 0;
+            right: 0;
+            height: 50px;
+            background: linear-gradient(to bottom, rgba(107, 123, 71, 0.3) 0%, rgba(90, 107, 58, 0) 100%);
+            transform: skewY(-1deg);
         }
 
         .footer-message {
-            font-family: 'Playfair Display', serif;
+            font-family: 'Poppins', sans-serif;
             font-size: 1.8rem;
             margin-bottom: 20px;
-            font-style: italic;
+            font-weight: 400;
+            font-style: normal;
         }
 
         .footer-text {
             font-size: 1.1rem;
             opacity: 0.9;
+            font-weight: 300;
         }
 
-        /* Animations */
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.1); }
+        /* Wave Animation */
+        @keyframes wave {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            25% { transform: translateY(-10px) rotate(1deg); }
+            75% { transform: translateY(10px) rotate(-1deg); }
         }
 
         /* Responsive Design */
@@ -368,6 +600,10 @@
                 padding: 60px 0;
             }
             
+            .story, .details, .dress-code, .rsvp {
+                padding-top: 100px;
+            }
+            
             .hero-content {
                 padding: 30px 15px;
                 margin: 0 10px;
@@ -403,6 +639,16 @@
         .section {
             scroll-margin-top: 80px;
         }
+
+        /* Additional smooth transitions */
+        .section {
+            will-change: transform, opacity;
+        }
+
+        /* Parallax effect for background */
+        .hero {
+            will-change: transform;
+        }
     </style>
 </head>
 <body>
@@ -435,9 +681,9 @@
         <h2 class="section-title">Наша історія</h2>
         <div class="story-content">
             <div class="story-text">
-                <p>Кожна любовна історія унікальна, але наша особлива. Ми зустрілися, коли менше за все очікували знайти свою половинку.</p>
-                <p>Від першого погляду до першого побачення, від перших слів до перших сміливих планів на майбутнє - кожен момент привів нас до цього дня.</p>
-                <p>Тепер ми готові розпочати нову главу нашого життя разом, і хочемо поділити цю радість з найдорожчими для нас людьми.</p>
+                <p>Наша любовна історія почалася несподівано і прекрасно. Ми зустрілися, коли менше за все очікували знайти свою половинку.</p>
+                <p>Від перших поглядів до перших побачень, від перших слів до сміливих мрій про майбутнє - кожна мить привела нас до цього особливого дня.</p>
+                <p>Тепер ми готові почати нову главу нашого життя разом, і нам дуже хочеться поділити цю радість із найріднішими та найдорожчими нам людей.</p>
             </div>
             <div class="story-image">
                 <!-- ФОТО 2: Замініть "story-photo.jpg" на ваше друге фото -->
@@ -455,15 +701,15 @@
                 <h3 class="detail-title">Дата</h3>
                 <div class="detail-info">
                     <div class="detail-highlight">26 вересня 2025</div>
-                    П'ятниця
+                    Наш особливий день
                 </div>
             </div>
             <div class="detail-card">
-                <span class="detail-icon">⏰</span>
+                <span class="detail-icon">ⰰ</span>
                 <h3 class="detail-title">Час</h3>
                 <div class="detail-info">
                     <div class="detail-highlight">14:00</div>
-                    Початок церемонії
+                    Початок нашої нової історії
                 </div>
             </div>
             <div class="detail-card">
@@ -471,7 +717,7 @@
                 <h3 class="detail-title">Місце</h3>
                 <div class="detail-info">
                     <div class="detail-highlight">Ресторан "Водограй"</div>
-                    Урочиста церемонія та святкування
+                    Де розпочнеться наша казка
                 </div>
             </div>
         </div>
@@ -482,8 +728,8 @@
         <h2 class="section-title">Дрес-код</h2>
         <div class="dress-code-content">
             <p class="dress-code-text">
-                Ми будемо раді бачити вас у зелених та оливкових тонах. 
-                Це допоможе створити гармонійну атмосферу та красиві фотографії нашого особливого дня.
+                Нам буде дуже приємно бачити вас у зелених та оливкових відтінках. 
+                Це допоможе створити гармонійну атмосферу та чудові спогади про наш особливий день.
             </p>
             <div class="color-palette">
                 <div class="color-swatch color-olive" title="Оливковий"></div>
@@ -495,11 +741,11 @@
 
     <!-- RSVP -->
     <section id="rsvp" class="rsvp section">
-        <h2 class="section-title">Підтвердження присутності</h2>
+        <h2 class="section-title">Чекаємо на вас</h2>
         <div class="rsvp-content">
             <p class="rsvp-text">
-                Будь ласка, підтвердьте свою присутність до 15 вересня 2025 року.
-                Ваша відповідь допоможе нам краще організувати святкування.
+                Будь ласка, дайте нам знати про свою присутність до 15 вересня 2025 року.
+                Ваша відповідь допоможе нам краще підготуватися та зробити цей день незабутнім для всіх.
             </p>
             <div class="contact-info">
                 <div class="contact-item">📞 Олег: +380 XX XXX XX XX</div>
@@ -511,7 +757,7 @@
 
     <!-- Footer -->
     <footer class="footer">
-        <div class="footer-message">З любов'ю та нетерпінням очікуємо зустрічі!</div>
+        <div class="footer-message">З любов'ю та теплом очікуємо на зустріч!</div>
         <div class="footer-text">Олег та Олександра ♥ 2025</div>
     </footer>
 
@@ -530,10 +776,10 @@
             });
         });
 
-        // Add fade-in animation on scroll
+        // Enhanced fade-in animation on scroll with staggered effects
         const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -100px 0px'
+            threshold: 0.15,
+            rootMargin: '0px 0px -80px 0px'
         };
 
         const observer = new IntersectionObserver((entries) => {
@@ -549,11 +795,51 @@
             observer.observe(section);
         });
 
-        // Make hero section visible immediately
+        // Parallax effect for hero background
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const parallax = document.querySelector('.hero');
+            const speed = scrolled * 0.5;
+            parallax.style.transform = `translateY(${speed}px)`;
+        });
+
+        // Add floating animation to detail cards on hover
+        document.querySelectorAll('.detail-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.animation = 'wave 2s ease-in-out infinite';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.animation = '';
+            });
+        });
+
+        // Smooth entrance animations
         document.addEventListener('DOMContentLoaded', () => {
+            // Make the first section visible with delay for better effect
             setTimeout(() => {
-                document.querySelector('.story.section')?.classList.add('visible');
-            }, 500);
+                const firstSection = document.querySelector('.story.section');
+                if (firstSection && isElementInViewport(firstSection)) {
+                    firstSection.classList.add('visible');
+                }
+            }, 800);
+        });
+
+        // Helper function to check if element is in viewport
+        function isElementInViewport(el) {
+            const rect = el.getBoundingClientRect();
+            return (
+                rect.top >= 0 &&
+                rect.left >= 0 &&
+                rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+                rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+            );
+        }
+
+        // Add smooth color transitions
+        const sections = document.querySelectorAll('.section');
+        sections.forEach((section, index) => {
+            section.style.transitionDelay = `${index * 0.1}s`;
         });
     </script>
 </body>

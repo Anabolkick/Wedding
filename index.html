@@ -315,6 +315,27 @@
             font-weight: 500;
         }
 
+        .map-button {
+            background: #708238;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            border: 2px solid #708238;
+            transition: all 0.3s ease;
+            display: inline-block;
+            margin-top: 15px;
+        }
+
+        .map-button:hover {
+            background: transparent;
+            color: #708238;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(112, 130, 56, 0.3);
+        }
+
         /* Timeline */
         .timeline-section {
             padding: 60px 0;
@@ -560,6 +581,10 @@
                 font-size: 2.5rem;
             }
 
+            .hero-background {
+                object-fit: contain;
+            }
+
             .timeline::before {
                 left: 30px;
             }
@@ -598,6 +623,10 @@
 
             .main-title {
                 font-size: 2rem;
+            }
+
+            .hero-background {
+                object-fit: contain;
             }
 
             .couple-photo {
@@ -649,7 +678,7 @@
     <section class="invitation-text">
         <h2>Запрошуємо вас на весілля</h2>
         <p>
-            Час промайнув так швидко, наше миттєвість... Здається, що вчора ми були просто двома людьми з окремими долями, а сьогодні ми не можемо усвідомити життя одне без одного. Наші серця злилися в одне ціле, і ми вирішили урочисто підтвердити наше кохання перед Богом та найріднішими людьми. Хотіли б розділити цей найщасливіший день у нашому житті саме з вами - тими, хто дорогий нашому серцю!
+            Незабаром у нашому житті відбудеться особлива подія — наше весілля! Найкращі миті життя стають ще ціннішими, коли їх розділяєш з близькими, тому дозвольте запросити вас розділити з нами цей прекрасний день!
         </p>
     </section>
 
@@ -723,8 +752,7 @@
         <h2 class="location-title">Місце проведення</h2>
         <div class="map-container">
             <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2623.8425154893!2d35.1646234763419!3d47.783227474081!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40dc7e8c3b1e5e25%3A0x9d8c85b7e3d7e1e5!2z0KDQtdGB0YLQvtGA0LDQvSDQktC-0LTQvtCz0YDQsNC5!5e0!3m2!1suk!2sua!4v1692990000000!5m2!1suk!2sua"
-                    width="100%"
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2718.01!2d35.1695751!3d47.7832274!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40dc5e518094fc6d%3A0xca441b5cbad9faf6!2sVodogray%20Hotel!5e0!3m2!1sru!2sua"                     width="100%"
                     height="300"
                     style="border:0; border-radius: 15px;"
                     allowfullscreen=""
@@ -734,7 +762,7 @@
             <div class="restaurant-info" style="margin-top: 20px;">
                 <strong>Ресторан "Водограй"</strong><br>
                 м. Запоріжжя<br>
-                <a href="https://maps.app.goo.gl/K4QeJ3eXr6Cv2oAX9" target="_blank" style="color: #708238; text-decoration: none; font-weight: 500; margin-top: 10px; display: inline-block;">
+                <a href="https://maps.app.goo.gl/K4QeJ3eXr6Cv2oAX9" target="_blank" class="map-button">
                     📍 Відкрити в Google Maps
                 </a>
             </div>

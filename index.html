@@ -207,13 +207,16 @@
         .calendar-day.header {
             font-weight: 700 !important;
             color: #708238 !important;
-            font-size: 0.65rem !important;
+            font-size: 0.8rem !important;
             background: none !important;
             text-transform: uppercase;
             letter-spacing: 0;
             aspect-ratio: auto !important;
             min-height: 20px !important;
+            max-height: 30px !important;
             padding: 5px 0 !important;
+            margin-left: 0;
+            margin-right: 0;
         }
 
         .calendar-day.empty {
@@ -598,12 +601,6 @@
                 font-size: 1rem;
             }
 
-            .calendar-day.header {
-                font-size: 0.85rem !important;
-                letter-spacing: 0.5px;
-                min-height: 25px !important;
-            }
-
             .timeline {
                 padding: 0;
             }
@@ -776,10 +773,6 @@
             .calendar-day {
                 font-size: 0.75rem;
             }
-
-            .calendar-day.header {
-                font-size: 0.6rem !important;
-            }
         }
     </style>
 </head>
@@ -813,13 +806,13 @@
             </div>
             <div class="calendar-grid">
                 <!-- Заголовки днів неділі -->
-                <div class="calendar-day">ПН</div>
-                <div class="calendar-day">ВТ</div>
-                <div class="calendar-day">СР</div>
-                <div class="calendar-day">ЧТ</div>
-                <div class="calendar-day">ПТ</div>
-                <div class="calendar-day">СБ</div>
-                <div class="calendar-day">НД</div>
+                <div class="calendar-day header">ПН</div>
+                <div class="calendar-day header">ВТ</div>
+                <div class="calendar-day header">СР</div>
+                <div class="calendar-day header">ЧТ</div>
+                <div class="calendar-day header">ПТ</div>
+                <div class="calendar-day header">СБ</div>
+                <div class="calendar-day header">НД</div>
 
                 <!-- Перший тиждень (1 вересня - понеділок) -->
                 <div class="calendar-day">1</div>

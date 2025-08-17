@@ -61,7 +61,7 @@
 
         .header {
             position: relative;
-            height: 400px;
+            height: 350px;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -98,13 +98,14 @@
 
         .main-title {
             font-family: 'Playfair Display', serif;
-            font-size: 3rem;
+            font-size: 2.2rem;
             font-weight: 700;
             color: white;
             margin-bottom: 10px;
             position: relative;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
             z-index: 1;
+            white-space: nowrap;
         }
 
         .date {
@@ -164,7 +165,7 @@
         .calendar {
             background: white;
             border-radius: 15px;
-            padding: 20px;
+            padding: 15px;
             max-width: 400px;
             margin: 0 auto;
             box-shadow: 0 10px 25px rgba(112, 130, 56, 0.1);
@@ -184,8 +185,8 @@
         .calendar-grid {
             display: grid;
             grid-template-columns: repeat(7, 1fr);
-            gap: 4px;
-            margin-top: 15px;
+            gap: 2px;
+            margin-top: 10px;
             width: 100%;
         }
 
@@ -194,23 +195,25 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             color: #5a6b47;
-            border-radius: 8px;
+            border-radius: 6px;
             transition: all 0.3s ease;
             position: relative;
             width: 100%;
+            padding: 2px;
         }
 
         .calendar-day.header {
-            font-weight: 700;
-            color: #708238;
-            font-size: 0.7rem;
-            background: none;
+            font-weight: 700 !important;
+            color: #708238 !important;
+            font-size: 0.65rem !important;
+            background: none !important;
             text-transform: uppercase;
             letter-spacing: 0;
-            aspect-ratio: auto;
-            min-height: 25px;
+            aspect-ratio: auto !important;
+            min-height: 20px !important;
+            padding: 5px 0 !important;
         }
 
         .calendar-day.empty {
@@ -233,10 +236,10 @@
         .calendar-day.wedding-day::after {
             content: '♥';
             position: absolute;
-            font-size: 0.8rem;
+            font-size: 1.5rem;
             color: #ff69b4;
-            top: -3px;
-            right: -3px;
+            top: -16px;
+            right: -4px;
         }
 
         @keyframes heartbeat {
@@ -472,7 +475,7 @@
         .countdown-timer {
             display: flex;
             justify-content: center;
-            gap: 15px;
+            gap: 10px;
             flex-wrap: wrap;
             margin-bottom: 20px;
         }
@@ -480,24 +483,24 @@
         .countdown-item {
             text-align: center;
             background: rgba(112, 130, 56, 0.1);
-            padding: 15px;
-            border-radius: 15px;
-            min-width: 65px;
+            padding: 10px 8px;
+            border-radius: 12px;
+            min-width: 60px;
             border: 2px solid #708238;
         }
 
         .countdown-number {
-            font-size: 2rem;
+            font-size: 1.5rem;
             font-weight: 700;
             color: #708238;
             display: block;
         }
 
         .countdown-label {
-            font-size: 0.75rem;
+            font-size: 0.65rem;
             color: #5a6b47;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
+            letter-spacing: 0.3px;
         }
 
         /* Footer */
@@ -552,6 +555,7 @@
 
             .main-title {
                 font-size: 3.5rem;
+                white-space: normal;
             }
 
             .invitation-text {
@@ -595,8 +599,9 @@
             }
 
             .calendar-day.header {
-                font-size: 0.9rem;
+                font-size: 0.85rem !important;
                 letter-spacing: 0.5px;
+                min-height: 25px !important;
             }
 
             .timeline {
@@ -699,12 +704,12 @@
             }
 
             .countdown-timer {
-                gap: 30px;
+                gap: 25px;
             }
 
             .countdown-item {
-                padding: 20px;
-                min-width: 80px;
+                padding: 18px 15px;
+                min-width: 75px;
             }
 
             .countdown-number {
@@ -748,6 +753,34 @@
             opacity: 1;
             transform: translateY(0);
         }
+
+        /* Extra small screens */
+        @media (max-width: 380px) {
+            .main-title {
+                font-size: 1.8rem;
+            }
+
+            .date {
+                font-size: 1.1rem;
+            }
+
+            .countdown-item {
+                min-width: 55px;
+                padding: 8px 6px;
+            }
+
+            .countdown-number {
+                font-size: 1.3rem;
+            }
+
+            .calendar-day {
+                font-size: 0.75rem;
+            }
+
+            .calendar-day.header {
+                font-size: 0.6rem !important;
+            }
+        }
     </style>
 </head>
 <body>
@@ -780,13 +813,13 @@
             </div>
             <div class="calendar-grid">
                 <!-- Заголовки днів неділі -->
-                <div class="calendar-day header">ПН</div>
-                <div class="calendar-day header">ВТ</div>
-                <div class="calendar-day header">СР</div>
-                <div class="calendar-day header">ЧТ</div>
-                <div class="calendar-day header">ПТ</div>
-                <div class="calendar-day header">СБ</div>
-                <div class="calendar-day header">НД</div>
+                <div class="calendar-day">ПН</div>
+                <div class="calendar-day">ВТ</div>
+                <div class="calendar-day">СР</div>
+                <div class="calendar-day">ЧТ</div>
+                <div class="calendar-day">ПТ</div>
+                <div class="calendar-day">СБ</div>
+                <div class="calendar-day">НД</div>
 
                 <!-- Перший тиждень (1 вересня - понеділок) -->
                 <div class="calendar-day">1</div>

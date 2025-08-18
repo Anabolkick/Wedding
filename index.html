@@ -10,6 +10,7 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            touch-action: pan-y;
         }
 
         html {
@@ -25,6 +26,7 @@
             overflow-x: hidden;
             width: 100%;
             min-height: 100vh;
+            touch-action: pan-y;
         }
 
         .container {
@@ -106,6 +108,7 @@
             text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
             z-index: 1;
             white-space: nowrap;
+			top: 110px;
         }
 
         .date {
@@ -113,8 +116,11 @@
             color: white;
             font-weight: 300;
             letter-spacing: 2px;
+			 margin-bottom: 10px;
+            position: relative;
             text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
             z-index: 1;
+			top: 95px;
         }
 
         /* Invitation text */
@@ -442,6 +448,7 @@
         .color-swatch:nth-child(4) { animation-delay: 0.4s; }
         .color-swatch:nth-child(5) { animation-delay: 0.5s; }
         .color-swatch:nth-child(6) { animation-delay: 0.6s; }
+        .color-swatch:nth-child(7) { animation-delay: 0.7s; }
 
         @keyframes fadeInScale {
             to {
@@ -456,6 +463,7 @@
         .color-4 { background: #8d7b68; }
         .color-5 { background: #c4b5a8; }
         .color-6 { background: #e6ddd4; }
+        .color-7 { background: #ffffff; }
 
         /* Countdown Section */
         .countdown-section {
@@ -739,17 +747,7 @@
             }
         }
 
-        /* Fade in animation */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s ease;
-        }
-
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
+        /* Remove fade in animation - causes touch issues */
 
         /* Extra small screens */
         @media (max-width: 380px) {
@@ -805,7 +803,7 @@
                 <span>Вересень 2025</span>
             </div>
             <div class="calendar-grid">
-                <!-- Заголовки днів неділі -->
+                <!-- Заголовки днів недiлі -->
                 <div class="calendar-day header">ПН</div>
                 <div class="calendar-day header">ВТ</div>
                 <div class="calendar-day header">СР</div>
@@ -814,7 +812,7 @@
                 <div class="calendar-day header">СБ</div>
                 <div class="calendar-day header">НД</div>
 
-                <!-- Перший тиждень (1 вересня - понеділок) -->
+                <!-- Перший тиждень (1 вересня - понедiлок) -->
                 <div class="calendar-day">1</div>
                 <div class="calendar-day">2</div>
                 <div class="calendar-day">3</div>
@@ -926,9 +924,9 @@
     <section class="dress-code-section">
         <h2 class="dress-code-title">Дрес-код</h2>
         <div class="dress-code-text">
-            <p>Ми будемо вам дуже вдячні, якщо ви підтримаєте кольори нашого весілля і використаєте їх у ваших нарядах. Основні кольори, які вітаються - це зелені та оливкові відтінки. Також прекрасно підійдуть коричневі, бежеві та пастельні кольори.</p>
+            <p>Якщо у вас є бажання та можливість підтримати кольори нашого весілля у своїх нарядах - будемо дуже вдячні. </p>
             <br>
-            <p><em>Не обов'язково одягати повноцінний костюм - можна просто дотримуватися приблизно класичного стилю в наших кольорах. Головне, щоб вам було комфортно!</em></p>
+            <p><em>Проте це не обов'язково. Головне - щоб вам було комфортно!</em></p>
         </div>
         <div class="color-palette">
             <div class="color-swatch color-1" title="Оливковий"></div>
@@ -937,6 +935,7 @@
             <div class="color-swatch color-4" title="Коричневий"></div>
             <div class="color-swatch color-5" title="Бежевий"></div>
             <div class="color-swatch color-6" title="Пастельний"></div>
+            <div class="color-swatch color-7" title="Білий"></div>
         </div>
     </section>
 
@@ -1005,49 +1004,38 @@
     updateCountdown();
     setInterval(updateCountdown, 1000);
 
-    // Animation on scroll
+    // Animation on scroll - simplified
     function animateOnScroll() {
         const colorSwatches = document.querySelectorAll('.dress-code-section .color-swatch');
-        const sections = document.querySelectorAll('.invitation-text, .calendar-section, .location-section, .timeline-section, .dress-code-section, .countdown-section, .footer');
-        
-        // Add fade-in class to sections
-        sections.forEach(section => {
-            section.classList.add('fade-in');
-        });
 
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    if (entry.target.classList.contains('color-swatch')) {
-                        entry.target.style.animationPlayState = 'running';
-                    } else {
-                        entry.target.classList.add('visible');
-                    }
+                if (entry.isIntersecting && entry.target.classList.contains('color-swatch')) {
+                    entry.target.style.animationPlayState = 'running';
                 }
             });
         }, {
             threshold: 0.1
         });
 
-        // Observe color swatches
+        // Observe color swatches only
         colorSwatches.forEach(el => {
             observer.observe(el);
             el.style.animationPlayState = 'paused';
-        });
-
-        // Observe sections
-        sections.forEach(section => {
-            observer.observe(section);
         });
     }
 
     // Initialize animations when page loads
     document.addEventListener('DOMContentLoaded', animateOnScroll);
 
-    // Prevent horizontal scroll
+    // Simple horizontal scroll prevention
     document.addEventListener('touchmove', function(e) {
-        if (document.body.scrollWidth > window.innerWidth) {
-            e.preventDefault();
+        // Only prevent if trying to scroll horizontally when page is scrollable vertically
+        if (Math.abs(e.touches[0].clientX - (e.touches[0].startX || e.touches[0].clientX)) > 
+            Math.abs(e.touches[0].clientY - (e.touches[0].startY || e.touches[0].clientY))) {
+            if (document.body.scrollHeight > window.innerHeight) {
+                e.preventDefault();
+            }
         }
     }, { passive: false });
 </script>
